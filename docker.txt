@@ -1,0 +1,28 @@
+docker run nginx // run nginx
+
+docker ps --all // cheak ID and Name docker
+
+docker stop CONTAINER ID or Name //stop running docker
+
+docker rm CONTAINER ID or Name // remove docker 
+
+docker run --name mr.nginx -p 8888:80 nginx // run docker at port 8888
+
+docker run --name mr.nginx  -d -p 8888:80 nginx // run docker at port 8888
+
+docker pull mysql:5.7 // pull mysql version 5.7
+
+docker pull phpmyadmin/phpmyadmin // pull phpmyadmin
+
+docker images // cheak images in docker
+
+docker network create Name // create network
+
+docker network ls // cheak network
+
+docker run --NAME --network NAME -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=NAME_database -e MYSQL_USER=NAME_USER -e MYSQL_PASSWORD=pass -d mysql:5.7 //setting docker mysql
+
+EX (docker run --name mysql --network web -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=web_db -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress -d mysql:5.7)
+
+docker run --name pma --network web -p 8888:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin // run docker mysql
+ 
