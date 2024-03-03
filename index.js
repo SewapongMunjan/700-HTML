@@ -7,11 +7,38 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 8000;
+const mysql = require('mysql2/promise');
 
 app.use(bodyParser.json());
 
 let users = [];
 let counter = 1;
+let conn = null
+
+
+const initMySQL = async () => {
+  conn = await mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'root',
+    database:'webdb',
+    port: 8700
+  })
+}
+
+
+app.get('/testdb-new', async (req, res) => {
+  try{
+    const results = await conn.query('SELECT * FROM users')
+    res.json(results[0]);
+
+  }catch (error) {
+    console.error('Error fetching users:', error.message)
+    res.status(500).json({error:'Error fetching users'})
+  }
+})
+
+
 app.get("/", (req, res) => {
   let user = {
     firstname: "John",
@@ -64,7 +91,7 @@ app.get("/users/:id", (req, res) => {
 
 
 // 4. PUT /user/:id สำหรับการแก้ไข users รายคน (ตาม id ที่บันทึกเข้าไป)
-app.put("/user/:id", (req, res) => {
+app.put("/users/:id", (req, res) => {
   let id = req.params.id;
   let updateUser = req.body;
   // 1. หา users จาก id ที่ส่งมา
@@ -108,6 +135,7 @@ app.delete("/users/:id", (req, res) => {
   });
 });
 
-app.listen(port, (req, res) => {
+app.listen(port, async (req, res) => {
+  await initMySQL()
   console.log(`Server is running on port ${port}.`);
 });
