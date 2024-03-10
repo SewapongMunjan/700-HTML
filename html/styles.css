@@ -46,6 +46,24 @@ textarea {
   width: 100%;
 }
 
+.message{
+  background-color: gray;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+.message.success{
+background-color: olivedrab;
+display: block;
+}
+
+.message.danger{
+  background-color: tomato;
+  display: block;
+}
+
+
 .button {
   border: 0;
   width: 50%;
@@ -65,3 +83,4 @@ textarea {
     width: 100%;
   }
 }
+
