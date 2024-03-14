@@ -68,9 +68,13 @@ for (let i = 0;i < interestDOMs.length; i++){
     }catch(error){
         console.log('error message', error.message)
         console.log('error',error.errors)
-        // if (error.response)
-        // {console.log(error.response.data.message)}
-    
+        
+        if (error.response)
+        {   console.log(error.response)
+            error.message = error.response.data.message
+            error.errors = error.response.data.errors
+        }
+
         let  htmlData = '<div>'
     htmlData += `</div>  ${error.message}  </div>`
     htmlData += '<ul>'  
