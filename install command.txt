@@ -1,6 +1,6 @@
+npm init -y//เอาไฟล์ลง node 
 npm install express //ลง express
 npm install nodemon // ลง nodemon
 npm install body-parser // ลง body-parser
-npm init //เอาไฟล์ลง node 
 npm install mysql2 //ลง mysql2
 npm install cors // ลง cors
